@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+<title><ui:insert name="title">Default title</ui:insert></title>
+<link rel="stylesheet" href="../css/header.css"></link>
+</head>
+
+<body>
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{User.setUserData}" />
+	</f:metadata>
+	
+	<br />
+	<header class="header-basic">
+	<div class="header-limiter">
+		<!--a><img src="./images/logo1.png" height="50px;" width="50px;"/></a-->
+		<a href="success.xhtml">My Profile</a>
+		<a href="build_resume.xhtml">Objective</a>
+		<a href="addexperience.xhtml" style="hover:red;">Work History</a>&nbsp;&nbsp;
+		<a href="add_education.xhtml">Education</a>&nbsp;&nbsp; <a
+			href="addproject.xhtml">Projects</a>&nbsp;&nbsp; <a
+			href="addcertification.xhtml">Certifications</a>&nbsp;&nbsp; <a
+			href="addachievement.xhtml">Achievements</a>&nbsp;&nbsp;<a href="view_resume.xhtml">View Resume</a> 
+			<span id="username" style="margin-left:245px;color:white;">Hello, #{User.firstname} #{User.lastname}</span> 
+			<h:form style="float:right;">
+			<h:commandLink value="Logout" action="#{User.logout}"></h:commandLink>
+		</h:form> 
+	</div>
+	</header>
+	<br></br>
+</body>
+
+</html>

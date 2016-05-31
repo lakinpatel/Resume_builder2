@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+<title><ui:insert name="title">Resume Builder Add Experience</ui:insert></title>
+<ui:insert name="header">
+	<ui:include src="header.xhtml" />
+</ui:insert>
+
+
+<!--   <script type="text/javascript">
+function rform()
+{
+	
+	document.expform.[companyname] = " ";
+	document.expform.[position] = " ";
+	document.expform.[details] = " ";
+	document.expform.[startdate] = " ";
+	document.expform.[enddate] = " ";
+	document.expform.[user_id] = " ";
+	
+   
+}
+</script> -->
+
+</head>
+
+<body style="background-image: url(./images/gg2.png);background-repeat: no-repeat;">
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+
+	<div id="header">
+		<ui:insert name="header">
+    	
+    	<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+			<!-- <ui:include src="header.xhtml"/> -->
+		</ui:insert>
+	</div>
+
+
+	<div id="content">
+		<ui:insert name="content">
+		<h:form name="expform" id="expform" style="margin-left:440px;width:30%;">
+			<h2>Add Experience</h2>
+    
+				<h:panelGrid columns="3">
+    	Company Name :
+    	<h:inputText id="companyname" class="signup-input" label="companyname"
+						value="#{Experience.companyname}" a:placeholder="Company Name..">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="companyname" style="color:red" />
+    	
+    	Position :
+    	<h:inputText id="position" class="signup-input" label="position"
+						value="#{Experience.position}" a:placeholder="Postion..">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="position" style="color:red" />
+    	
+    	Responsibilities :
+    	<h:inputTextarea rows="4" cols="30" id="responsibilities" label="responsibilities"
+						value="#{Experience.responsibilities}" a:placeholder="Responsibilities..">
+						<f:validateRequired />
+					</h:inputTextarea>
+					<h:message for="responsibilities" style="color:red" />
+    	
+    	Start Date:
+    	<h:inputText id="startdate" class="signup-input" value="#{Experience.startdate}"
+						label="startdate">
+						<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:inputText>
+					<h:message for="startdate" style="color:red" />
+         
+         End Date:
+    	<h:inputText id="enddate" class="signup-input" value="#{Experience.enddate}"
+						label="enddate">
+						<f:convertDateTime pattern="dd-mm-yyyy" />
+					</h:inputText>
+					<h:message for="enddate" style="color:red" />
+
+				</h:panelGrid>
+				<h:commandButton action="#{Experience.addExperience}" class="new-button" value="Add"
+					id="btnSubmit" style="margin-left:120px;"/>
+				<!--  <h:commandButton type="submit" value="Edit" action="javascript:rform();" /> -->
+			</h:form>
+<br/><br/>
+
+			<h:form id="expList" style="margin-left:440px;">
+				<ui:repeat value="#{Experience.experience}" var="exp">
+					<li style="list-style:none;"><b><h:outputText value="#{exp.position}" class="first-letter-upper"></h:outputText></b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Company Name : <h:outputText value="#{exp.companyname}" class="first-letter-upper"></h:outputText><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:outputText value="#{exp.responsibilities}"></h:outputText><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From : <h:outputText value="#{exp.startdate}"></h:outputText> &nbsp;&nbsp; To
+						 <h:outputText value="#{exp.enddate}"></h:outputText><br/>
+						<h:commandButton value="Delete" class="new-button" action="#{exp.deleteExp}" style="margin-left:20px;"/>
+						</li><br/>
+				</ui:repeat>
+			</h:form>
+
+
+		</ui:insert>
+	</div>
+	<br/>
+</body>
+
+</html>

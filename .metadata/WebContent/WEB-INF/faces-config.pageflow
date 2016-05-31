@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14597114266140" configfile="/Resume_builder2/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" comment="login user" x="122" y="562" id="pf14597272570721" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14597272570732 pf14597272570733" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="success.xhtml" x="338" y="178" id="pf14597272570734" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14597272570732 pf14597272570735" path="/success.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="338" y="562" id="pf14597272570746" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf14597272570733 pf14597272570747" path="/error.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="register.xhtml" comment="register new user" x="122" y="178" id="pf14597272570748" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14597272570735 pf14597272570747" path="/register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="build_resume.xhtml" comment="add objective" x="122" y="946" id="pf14597287095969" referenceLink="//@navigationRule.2/@navigationCase.1/@toViewId|" outlinks="pf145972870959610 pf145972870959611" inlinks="pf145972870959610 pf145972870959611" path="/build_resume.xhtml"/>
+  <links id="pf14597272570732" target="pf14597272570734" source="pf14597272570721" outcome="output" fromaction="#{User.login}"/>
+  <links id="pf14597272570733" target="pf14597272570746" source="pf14597272570721" outcome="invalid" fromaction="#{User.login}"/>
+  <links id="pf14597272570735" target="pf14597272570734" source="pf14597272570748" outcome="success" fromaction="#{User.insert}"/>
+  <links id="pf14597272570747" target="pf14597272570746" source="pf14597272570748" outcome="unsuccess" fromaction="#{User.insert}"/>
+  <links id="pf145972870959610" target="pf14597287095969" source="pf14597287095969" outcome="added" fromaction="#{Resume.qddObjective}">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf145972870959611" target="pf14597287095969" source="pf14597287095969" outcome="not" fromaction="#{Resume.addObjective}">
+    <bendPoints d1Height="-66" d2Height="-66"/>
+    <bendPoints d1Width="-94" d1Height="-66" d2Width="-94" d2Height="-66"/>
+    <bendPoints d1Width="-94" d2Width="-94"/>
+  </links>
+</pageflow:Pageflow>

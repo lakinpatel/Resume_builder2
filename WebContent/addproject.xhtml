@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+  <title><ui:insert name="title">Resume Builder Add Project</ui:insert></title>
+</head>
+
+<body style="background-image: url(./images/gg2.png);background-repeat: no-repeat;">
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<div id="header">
+    <ui:insert name="header">
+    	<ui:include src="header.xhtml"/>
+    </ui:insert>
+</div><br></br>
+
+<div id="content">
+  <ui:insert name="content">
+	<h:form id="frmAddProj" class="main-content">
+	<h2>Add Project</h2>
+	<h:panelGrid columns="3">
+    	Project Title :
+    	<h:inputText id="title" class="signup-input" label="title" value="#{Project.title}"
+					a:placeholder="Title here" size="30">
+					<f:validateRequired />
+    	</h:inputText>
+		<h:message for="title" style="color:red" />
+    	
+    	Description :
+    	<h:inputTextarea id="description" label="description" value="#{Project.description}"
+					a:placeholder="Description here" cols="31" rows="4">
+					<f:validateRequired />
+    	</h:inputTextarea>
+    	<h:message for="description" style="color:red" />
+    	
+    	Technologies :
+    	<h:inputText id="technologies" label="technologies" class="signup-input" value="#{Project.technologies}"
+					a:placeholder="Technologies here" size="30">
+					<f:validateRequired />
+    	</h:inputText>
+    	<h:message for="technologies" style="color:red" />
+    	</h:panelGrid>
+    	<h:commandButton action="#{Project.storeProject}" value="Add" id="btnSubmit" class="new-button" style="margin-left:100px;" />
+    	
+	  	<!--h:commandButton value="ProjectInfo">
+				<f:ajax execute="title technologies" render="output" />
+		</h:commandButton--><br></br>
+		
+    	</h:form>
+    	<div class="main-content"><h:outputText id="message" value="#{Project.errMessage}" /></div>
+    	<!-- h:outputText id="output" value="#{Project.title}" /-->
+    	<!-- <ui:include src="content.xhtml"/> -->  
+  </ui:insert>
+<br></br>
+
+		<h:form id="frmListEdu" class="main-content">
+				<ui:repeat value="#{Project.projects}" var="project">
+					<li class="list-display-none"><b><h:outputText value="#{project.title}"></h:outputText></b><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Desciption : <h:outputText value="#{project.description}"></h:outputText><br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Technologies : <h:outputText value="#{project.technologies}"></h:outputText>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+						<h:commandButton value="Delete" action="#{project.deleteProject}" class="new-button" style="margin-left:20px;"/>
+					</li><br/>
+				</ui:repeat>
+			</h:form>
+				
+	</div><br></br>
+
+</body>
+
+</html>

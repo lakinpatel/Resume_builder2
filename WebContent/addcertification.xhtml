@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+<title><ui:insert name="title">Resume Builder Add Certification</ui:insert></title>
+<style>
+ .new-button
+ {
+    background-color: lightseagreen;
+    border-radius: 15px;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+ </style>
+
+</head>
+
+<body style="background-image: url(./images/gg2.png);">
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+	</div>
+
+
+	<div id="content">
+		<ui:insert name="content">
+			<h:form id="frmCertification" class="main-content">
+				<h:panelGrid columns="3">
+					Your Certification:
+		    		<h:inputTextarea id="name" label="name"
+							value="#{Certification.name}" a:placeholder="Enter name here">
+							<f:validateRequired />
+					</h:inputTextarea>
+					<h:message for="name" style="color:red" />
+				</h:panelGrid>
+				<h:commandButton class="new-button" action="#{Certification.addCertification}" value="Add" id="btnSubmit" style="margin-left:120px;"/>
+			</h:form>
+			<br></br>
+			<div class="main-content"><h:outputText id="message" value="#{Certification.errMessage}" /></div>
+			<br></br>
+			<h:form id="frmListCerti" class="main-content">
+				<h:dataTable value="#{Certification.certifications}"
+					var="certification" styleClass="certificationTable"
+					headerClass="certificationTableHeader"
+					rowClasses="certificationTableOddRow,certificationTableEvenRow">
+					<h:column>
+						<f:facet name="header">Name</f:facet>
+						<h:inputText value="#{certification.name}" size="5"
+							rendered="#{certification.name}" />
+						<h:outputText value="#{certification.name}"
+							rendered="#{not certification.name}" class="first-letter-upper" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Action</f:facet>
+						<h:inputHidden id="id" value="#{certification.id}"></h:inputHidden>
+						<h:commandButton class="new-button" value="Delete" action="#{certification.deleteCerti}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</ui:insert>
+	</div>
+
+</body>
+
+</html>

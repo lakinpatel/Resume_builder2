@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+<navigation-rule>  
+        <description>login user</description>  
+        <from-view-id>/login.xhtml</from-view-id>  
+        <navigation-case>  
+            <from-action>#{User.login}</from-action>  
+            <from-outcome>output</from-outcome>  
+            <to-view-id>/success.xhtml</to-view-id>  
+        </navigation-case>
+        <navigation-case>  
+            <from-action>#{User.login}</from-action>  
+            <from-outcome>invalid</from-outcome>  
+            <to-view-id>/error.xhtml</to-view-id>  
+        </navigation-case>
+    </navigation-rule> 
+     <navigation-rule>  
+        <description>register new user</description>  
+        <from-view-id>/register.xhtml</from-view-id>  
+        <navigation-case>  
+            <from-action>#{User.insert}</from-action>  
+            <from-outcome>success</from-outcome>  
+            <to-view-id>/success.xhtml</to-view-id>  
+        </navigation-case>  
+        <navigation-case>  
+            <from-action>#{User.insert}</from-action>  
+            <from-outcome>unsuccessful</from-outcome>  
+            <to-view-id>/error.xhtml</to-view-id>  
+        </navigation-case>  
+    </navigation-rule>
+    <navigation-rule>  
+        <description>register new user</description>  
+        <from-view-id>/edit_profile.xhtml</from-view-id>  
+        <navigation-case>  
+            <from-action>#{User.update}</from-action>  
+            <from-outcome>success</from-outcome>  
+            <to-view-id>/success.xhtml</to-view-id>  
+        </navigation-case>  
+        <navigation-case>  
+            <from-action>#{User.update}</from-action>  
+            <from-outcome>unsuccessful</from-outcome>  
+            <to-view-id>/error.xhtml</to-view-id>  
+        </navigation-case>  
+    </navigation-rule>
+    <navigation-rule>  
+        <description>add objective</description>  
+        <from-view-id>/build_resume.xhtml</from-view-id>  
+        <navigation-case>  
+            <from-action>#{Resume.addObjective}</from-action>  
+            <from-outcome>added</from-outcome>  
+            <to-view-id>/build_resume.xhtml</to-view-id>  
+        </navigation-case>  
+        <navigation-case>  
+            <from-action>#{Resume.addObjective}</from-action>  
+            <from-outcome>not</from-outcome>  
+            <to-view-id>/build_resume.xhtml</to-view-id>  
+        </navigation-case>  
+    </navigation-rule> 
+</faces-config>

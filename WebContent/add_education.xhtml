@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+  <title><ui:insert name="title">Resume Builder Add Education</ui:insert></title>
+  <style>
+ .new-button
+ {
+    background-color: lightseagreen;
+    border-radius: 15px;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+  </style>
+</head>
+
+<body style="background-image: url(./images/gg2.png);background-repeat: no-repeat;height:100%;margin-left:auto;margin-right:auto;">
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<div id="header">
+    <ui:insert name="header">
+    	<ui:include src="header.xhtml"/>
+    </ui:insert>
+</div>
+
+<!-- style="background-image: url(./images/2.gif); width:70%;margin:0 auto;" -->
+<div id="content">
+  <ui:insert name="content">
+    	<h:form class="main-content">
+    	<h2>Add Education</h2>
+	<h:panelGrid columns="3">
+    	Program :
+    	<h:inputText id="program" label="title" class="signup-input" value="#{Education.program}"
+					a:placeholder="Program name" size="30">
+					<f:validateRequired />
+    	</h:inputText>
+		<h:message for="program" style="color:red" />
+		
+		Graduated Year :
+    	<h:inputText id="graduated_year" label="graduated_year" class="signup-input" value="#{Education.graduated_year}"
+					a:placeholder="Graduated year" size="30">
+					<f:validateRequired />
+    	</h:inputText>
+		<h:message for="graduated_year" style="color:red" />
+    	
+    	Institution :
+    	<h:inputTextarea id="institution" label="description" class="signup-input" value="#{Education.institution}"
+					a:placeholder="Institute name" cols="31" rows="4">
+					<f:validateRequired />
+    	</h:inputTextarea>
+    	<h:message for="instituion" style="color:red" />
+    	
+    	Country :
+    	<h:inputText id="country" label="country" class="signup-input" value="#{Education.country}"
+					a:placeholder="Country" size="30">
+					<f:validateRequired />
+    	</h:inputText>
+    	<h:message for="country" style="color:red" />
+    	</h:panelGrid>
+    	<h:commandButton action="#{Education.addEducation}" value="Add" id="btnSubmit" class="new-button" style="margin-left:120px;"/>
+    	
+	  	<!--h:commandButton value="ProjectInfo">
+				<f:ajax execute="title technologies" render="output" />
+		</h:commandButton--><br></br>
+		
+    	</h:form>
+    	<br/><br/>
+    	<h:form id="frmListEduction" class="main-content">
+				<ui:repeat value="#{Education.educations}" var="education">
+					<li class="list-display-none"><b><h:outputText value="#{education.program}" class="first-letter-upper"></h:outputText></b><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Graduated year : <h:outputText value="#{education.graduated_year}"></h:outputText><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Institute : <h:outputText value="#{education.institution}"></h:outputText><br />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From : <h:outputText value="#{education.country}"></h:outputText>
+						<br/><h:commandButton value="Delete" class="new-button" action="#{education.deleteEducation}" style="margin-left:15px;"/>
+					</li><br/>
+				</ui:repeat>
+				
+			</h:form>
+    	
+  </ui:insert>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="output:#{User.login}:#success.xhtml"
+    NAME="output" PATH="/success.xhtml" TARGET="rules:#success.xhtml"
+    TITLE="#{User.login}:output" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="invalid:#{User.login}:#error.xhtml"
+    NAME="output1" PATH="/error.xhtml" TARGET="rules:#error.xhtml"
+    TITLE="#{User.login}:invalid" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#register.xhtml" PATH="/register.xhtml"
+  SHAPE="32,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#register.xhtml:0" NAME="item"
+   PATH="/register.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success:#{User.insert}:#success.xhtml"
+    NAME="output" PATH="/success.xhtml" TARGET="rules:#success.xhtml"
+    TITLE="#{User.insert}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="unsuccessful:#{User.insert}:#error.xhtml"
+    NAME="output1" PATH="/error.xhtml" TARGET="rules:#error.xhtml"
+    TITLE="#{User.insert}:unsuccessful" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#error.xhtml" PATH="/error.xhtml"
+  SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#success.xhtml" PATH="/success.xhtml"
+  SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#build_resume.xhtml"
+  PATH="/build_resume.xhtml" SHAPE="48,305,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#build_resume.xhtml:0" NAME="item"
+   PATH="/build_resume.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="added:#{Resume.addObjective}:#build_resume.xhtml" NAME="output"
+    PATH="/build_resume.xhtml" TARGET="rules:#build_resume.xhtml"
+    TITLE="#{Resume.addObjective}:added" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="not:#{Resume.addObjective}:#build_resume.xhtml" NAME="output1"
+    PATH="/build_resume.xhtml" TARGET="rules:#build_resume.xhtml"
+    TITLE="#{Resume.addObjective}:not" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#edit_profile.xhtml"
+  PATH="/edit_profile.xhtml" SHAPE="32,449,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#edit_profile.xhtml:0" NAME="item"
+   PATH="/edit_profile.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="success:#{User.update}:#success.xhtml"
+    NAME="output" PATH="/success.xhtml" TARGET="rules:#success.xhtml"
+    TITLE="#{User.update}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="unsuccessful:#{User.update}:#error.xhtml"
+    NAME="output1" PATH="/error.xhtml" TARGET="rules:#error.xhtml"
+    TITLE="#{User.update}:unsuccessful" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

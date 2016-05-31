@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+<title><ui:insert name="title">View Resume</ui:insert></title>
+</head>
+
+<body>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{Resume.setUserObjective}" />
+	</f:metadata>
+	<ui:debug hotkey="x"
+		rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}" />
+
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div id="content" class="main-content">
+		<ui:insert name="content">
+			<div id="user-info">
+				<h:outputText value=" #{User.firstname} #{User.lastname}" class="first-letter-upper"></h:outputText><br />
+				EmailId:<h:outputText value=" #{User.emailid}"></h:outputText><br />
+				Phone #:<h:outputText value=" #{User.phone}"></h:outputText><br />
+			</div><br/>
+			
+			<div id="objective">
+				<b>Objective: </b><br /><h:outputText value="#{Resume.objectData}"></h:outputText><br />
+			</div><br/>
+			<div id="experiences">
+				<b>Experience : </b><ul>
+					<ui:repeat value="#{Experience.experience}" var="exp">
+						<li><b><h:outputText value="#{exp.position}" class="first-letter-upper"></h:outputText></b><br />
+							Company Name : <h:outputText value="#{exp.companyname}"></h:outputText><br />
+							<h:outputText value="#{exp.responsibilities}"></h:outputText><br />
+							From : <h:outputText value="#{exp.startdate}"></h:outputText> To
+							: <h:outputText value="#{exp.enddate}"></h:outputText></li>
+					</ui:repeat>
+				</ul>
+			</div>
+			<div id="educations">
+				<b>Education Details :</b><ul>
+					<ui:repeat value="#{Education.educations}" var="education">
+						<li><b><h:outputText value="#{education.program}" class="first-letter-upper"></h:outputText></b><br />
+							Graduated year : <h:outputText value="#{education.graduated_year}"></h:outputText><br />
+							<h:outputText value="#{education.institution}" class="first-letter-upper"></h:outputText><br />
+							From : <h:outputText value="#{education.country}"></h:outputText></li>
+					</ui:repeat>
+				</ul>
+			</div>
+			<div id="projects">
+				<b>Projects :</b><ul>
+					<ui:repeat value="#{Project.projects}" var="project">
+						<li><b><h:outputText value="#{project.title}" class="first-letter-upper"></h:outputText></b><br/>
+							<h:outputText value="#{project.description}"></h:outputText><br/>
+							<h:outputText value="#{project.technologies}"></h:outputText></li>
+					</ui:repeat>
+				</ul>
+			</div>
+			<div id="certifications">
+				<b>Certifications :</b><ul>
+					<ui:repeat value="#{Certification.certifications}" var="certification">
+						<li><h:outputText value="#{certification.name}" class="first-letter-upper"></h:outputText><br/></li>
+					</ui:repeat>
+				</ul>
+			</div>
+			<div id="achievements">
+				<b>Other Achievements :</b><ul>
+					<ui:repeat value="#{Achievement.achievements}" var="achievement">
+						<li><h:outputText value="#{achievement.description}"></h:outputText><br/></li>
+					</ui:repeat>
+				</ul>
+			</div>
+			<div id="download">
+				<h:commandButton class="new-button" id="button" value="Download PDF" action="#{DownloadBean.downloadPdf}"/>
+			</div><br/>
+		</ui:insert>
+	</div>
+
+</body>
+</html>

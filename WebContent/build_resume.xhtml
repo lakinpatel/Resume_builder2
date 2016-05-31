@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<head>
+<title><ui:insert name="title">Set Objective</ui:insert></title>
+</head>
+
+<body style="background-image: url(./images/gg2.png);">
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{Resume.setUserObjective}" />
+	</f:metadata>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div id="content">
+		<ui:insert name="content">
+			<h:form id="fromObject" class="main-content">
+				<h:panelGrid columns="3">
+				Objective:
+	    		<h:inputTextarea id="objective" label="objective" rows="5" cols="70"
+						value="#{Resume.objective}" a:placeholder="Enter Objective here">
+						<f:validateRequired />
+					</h:inputTextarea>
+					<h:message for="objective" style="color:red" />
+					<!-- h:outputText value="#{Resume.objectivelength}" /-->
+
+					<c:choose>
+						<c:when test="#{Resume.objectivelength > 0}">
+							<h:commandButton action="#{Resume.update}" class="new-button" value="Update"
+								id="btnSubmit2" />
+						</c:when>
+						<c:otherwise>
+							<h:commandButton class="new-button" action="#{Resume.addObjective}"
+								value="Add Objective" id="btnSubmit" />
+						</c:otherwise>
+					</c:choose>
+				</h:panelGrid>
+			</h:form>
+
+		</ui:insert>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+<title><ui:insert name="title">Resume Builder Edit User Profile</ui:insert></title>
+</head>
+
+<body style="background-image: url(./images/gg2.png);">
+<div id="header">
+    <ui:insert name="header">
+    	<ui:include src="header.xhtml"/>
+    </ui:insert>
+</div>
+
+	<div id="content">
+		<ui:insert name="content">
+			<f:metadata>
+				<f:event type="preRenderView" listener="#{User.setUserData}" />
+			</f:metadata>
+			<h:form class="main-content">
+				<h:panelGrid columns="3">
+    	First Name :
+    	<h:inputText id="fname" label="fname" class="signup-input" value="#{User.firstname}"
+						p:placeholder="First Name here">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="fname" style="color:red" />
+    	
+    	Last Name :
+    	<h:inputText id="lname" label="lname" class="signup-input" value="#{User.lastname}"
+						p:placeholder="Last Name here">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="lname" style="color:red" />
+    	
+    	Email Address :
+    	<h:inputText id="email" label="email" class="signup-input" value="#{User.emailid}"
+						p:placeholder="Email Address here">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="email" style="color:red" />
+    	City :
+    	<h:inputText id="city" label="city" class="signup-input" value="#{User.city}"
+						p:placeholder="City here">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="city" style="color:red" />
+    	Country :
+    	<h:inputText id="country" label="country" class="signup-input" value="#{User.country}"
+						p:placeholder="Country here">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="country" style="color:red" />
+    	Date of birth :
+    	<h:inputText id="dateofbirth" label="dateofbirth"
+						value="#{User.dateofbirth}" class="signup-input" p:placeholder="Date of Birth here">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="dateofbirth" style="color:red" />
+    	Phone Number :
+    	<h:inputText id="phonenumber" label="phonenumber" class="signup-input"
+						value="#{User.phone}" p:placeholder="Phone number here">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="phonenumber" style="color:red" />
+    	Password :
+    	<h:inputText id="password" label="password" class="signup-input"
+						value="#{User.password}" p:placeholder="Password here">
+						<f:validateRequired />
+					</h:inputText>
+					<h:message for="password" style="color:red" />
+				</h:panelGrid>
+				<h:commandButton style="margin-left:120px;" class="new-button" action="#{User.update}" value="Update"
+					id="btnSubmit" />
+			</h:form>
+		</ui:insert>
+	</div>
+
+	
+</body>
+
+</html>

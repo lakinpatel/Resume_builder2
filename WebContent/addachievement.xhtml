@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+  <title><ui:insert name="title">Default title</ui:insert></title>
+ <style>
+ .new-button
+ {
+    background-color: lightseagreen;
+    border-radius: 15px;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+ </style>
+</head>
+
+<body style="background-image: url(./images/gg2.png);">
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+
+<div id="header">
+    <ui:insert name="header">
+    	<ui:include src="header.xhtml"/>
+    </ui:insert>
+</div>
+
+
+<div id="content">
+  <ui:insert name="content">
+    	<h:form id="frmAchievement" class="main-content">
+			<h:panelGrid columns="3">
+				Your Achievement:
+	    		<h:inputTextarea id="description" label="description"
+					value="#{Achievement.description}" a:placeholder="Enter achievement">
+					<f:validateRequired />
+				</h:inputTextarea>
+				<h:message for="description" style="color:red" />
+				</h:panelGrid>
+				<h:commandButton class="new-button" action="#{Achievement.addAchievement}" value="Add" id="btnSubmit" style="margin-left:120px;"/>
+		</h:form><br></br>
+		<div class="main-content"><h:outputText id="message" value="#{Achievement.errMessage}"/><br></br><br></br></div>
+		<h:form id="frmListAchieve" class="main-content">
+			<h:dataTable value="#{Achievement.achievements}" var="achievement"
+		         styleClass="achievementTable"
+		         headerClass="achievementTableHeader"
+		         rowClasses="achievementTableOddRow,achievementTableEvenRow">
+      			<h:column>
+         			<f:facet name="header">Description</f:facet>    				
+         			#{achievement.description}
+      			</h:column>
+      			<h:column>
+         			<f:facet name="header">Action</f:facet>
+         			<h:inputHidden id="id" value="#{achievement.id}"></h:inputHidden>
+         			<h:commandButton class="new-button" value="Delete" action="#{achievement.deleteAchievement}"  />  
+      			</h:column>
+      		</h:dataTable>
+		</h:form>
+  </ui:insert>
+</div>
+
+</body>
+
+</html>
